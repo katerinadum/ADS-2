@@ -10,19 +10,19 @@ int countPairs1(int* arr, int len, int value) {
 	return k;
 }
 
-// 2 - улучшенный поиск сумм, с отбрасыванием заведомо лишних значений (движение с двух концов навстречу)
+// 2 - улучшенный поиск сумм
 int countPairs2(int* arr, int len, int value) {
 	int l = 0, r = len -1, k = 0; // границы и счетчик
 	
 	if (arr[r]> value)
 		while (arr[r] > value)
 			r--; // отбрасываем лишние элементы
-
+	
 	while (r > l) {
-		if (arr[r] + arr[l] < value) 
+		if (arr[r] + arr[l] < value)
 			l++;
 		else {
-			int p = l; // вводим переменную, чтобы в самой функции не изменялось значение левой границы
+			int p = l; // чтобы не изменялось значение левой границы
 			if (arr[r] + arr[p] == value) {
 				while (arr[r] + arr[p] == value) {
 					k++;
@@ -35,14 +35,14 @@ int countPairs2(int* arr, int len, int value) {
 	return k;
 }
 
-// алгоритм бинарного поиска второго элемента пары, в сумме дающей заданное число
+// алгоритм бинарного поиска второго элемента
 int countPairs3(int* arr, int len, int value) {
 	int l = 0, r = len - 1, k = 0; // границы и счетчик
-  
+	
 	if (arr[r] > value)
 		while (arr[r] > value)
 			r--; // отбрасываем лишние элементы
-  
+	
 	while (l < r) {
 		int n = value - arr[l]; // искомое число - разность искомого и левой границы
 		int i = l, j = r; // чтобы границы не менялись
