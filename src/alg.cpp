@@ -17,7 +17,7 @@ int countPairs2(int* arr, int len, int value) {
             r--; // отбрасываем лишние элементы
     while (r > l) {
         if (arr[r] + arr[l] == value) {
-            int p = l; // вводим переменную, чтобы не изменялось значение левой границы
+            int p = l; // чтобы не изменялось значение левой границы
             while (arr[r] + arr[p] == value) {
                 k++;
                 p++;
