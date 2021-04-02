@@ -16,19 +16,19 @@ int countPairs2(int* arr, int len, int value) {
         while (arr[r] > value)
             r--; // отбрасываем лишние элементы
     while (r > l) {
-        if (arr[r] + arr[l] > value) {
-            int p = l; // чтобы в функции не изменялось значение левой границы
-            if (arr[r] + arr[p] == value) {
-                while (arr[r] + arr[p] == value) {
-                    k++;
-                    p++;
-                }
-                else
-                    if (arr[r] + arr[l] < value)
-                        l++;
+        if (arr[r] + arr[l] == value) {
+            int p = l; // вводим переменную, чтобы в самой функции не изменялось значение левой границы
+            while (arr[r] + arr[p] == value) {
+                k++;
+                p++;
             }
             r--;
         }
+        else
+            if (arr[r] + arr[l] > value)
+                r--;
+            else
+                l++;
     }
     return k;
 }
