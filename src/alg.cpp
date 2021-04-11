@@ -21,6 +21,8 @@ int countPairs2(int* arr, int len, int value) {
             while (arr[r] + arr[p] == value) {
                 k++;
                 p++;
+                if (r == p)
+                    break;
             }
             r--;
         } else {
@@ -39,20 +41,36 @@ int countPairs3(int* arr, int len, int value) {
         while (arr[r] > value)
             r--; // отбрасываем лишние элементы
     while (l < r) {
-        int n = value - arr[l]; // искомый элемент (пара)
+        int n = value - arr[l]; // искомое число - разность искомого и левой границы
         int i = l, j = r; // чтобы границы не менялись
         while (i < j) { // бинарный поиск второго элемента пары
             int mid = (i + j) / 2;
-            if (arr[mid] < n)
+            if (arr[mid] < n) 
+            while ((arr[mid] < n) && (i < j)) {
                 i = mid + 1;
-            else
-                j = mid;
-            if (arr[i] == n) {
-                while (arr[i] == n) {
-                    k++;
-                    i++;
-                }
+                mid = (i + j) / 2;
+                if (arr[mid] == n)
+                    break;
             }
+            if (arr[mid] > n)
+            while ((arr[mid] > n) && (i < j)) {
+                j = mid - 1;
+                mid = (i + j) / 2;
+                if (arr[mid] == n)
+                    break;
+            }
+            if (arr[mid] == n) {
+                    i = mid;
+                    while ((arr[i] == n) && (i < j)) {
+                        k++;
+                        i--;
+                    }
+                    i = mid+1;
+                    while ((arr[i] == n) && (i < j)) {
+                        k++;
+                        i++;
+                    }
+                }
         }
         l++;
     }
