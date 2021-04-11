@@ -60,7 +60,7 @@ int countPairs3(int* arr, int len, int value) {
                 if (arr[mid] == n)
                     break;
             }
-            }    
+            }
             if (arr[mid] == n) {
                     i = mid;
                     while ((arr[i] == n) && (i < j)) {
