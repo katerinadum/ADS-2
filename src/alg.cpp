@@ -43,37 +43,33 @@ int countPairs3(int* arr, int len, int value) {
     while (l < r) {
         int n = value - arr[l]; // искомое число
         int i = l, j = r; // чтобы границы не менялись
-        while (i < j) { // бинарный поиск второго элемента пары
-            int mid = (i + j) / 2;
-            if (arr[mid] < n) {
+        int mid = (i + j) / 2;
+        if (arr[mid] < n) {
             while ((arr[mid] < n) && (i < j)) {
+                    i = mid + 1;
+                    mid = (i + j) / 2;
+                }
+            }
+        if (arr[mid] > n) {
+                while ((arr[mid] > n) && (i < j)) {
+                    j = mid - 1;
+                    mid = (i + j) / 2;
+                }
+            }
+        if (arr[mid] == n) {
+                i = mid;
+                while ((arr[i] == n) && (i > l)) {
+                    k++;
+                    i--;
+                }
                 i = mid + 1;
-                mid = (i + j) / 2;
-                if (arr[mid] == n)
-                    break;
-            }
-            }
-            if (arr[mid] > n) {
-            while ((arr[mid] > n) && (i < j)) {
-                j = mid - 1;
-                mid = (i + j) / 2;
-                if (arr[mid] == n)
-                    break;
-            }
-            }
-            if (arr[mid] == n) {
-                    i = mid;
-                    while ((arr[i] == n) && (i <= j)) {
-                        k++;
-                        i--;
-                    }
-                    i = mid+1;
-                    while ((arr[i] == n) && (i <= j)) {
+                if (arr[i] == n) {
+                    while ((arr[i] == n)) {
                         k++;
                         i++;
                     }
                 }
-        }
+            }
         l++;
     }
     return k;
